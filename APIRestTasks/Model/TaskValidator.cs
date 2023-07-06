@@ -18,10 +18,7 @@ namespace APIRestTasks.Model
 				.Must(ValidarData).WithMessage("O campo dueDate deve ser uma data válida no formato dd-MM-yyyy");
 
 			RuleFor(x => x.completed)
-				.Must(IsBoolean).WithMessage("O campo completed deve ser um valor booleano");
-
-			RuleFor(x => x.Priority)
-				.Must(RangePriority).WithMessage("O campo priority deve ser um número inteiro entre 1 e 5, sendo 1 a maior prioridade");
+				.Must(IsBoolean).WithMessage("O campo completed deve ser um valor booleano ['true' | 'false']");
 		}
 
 		private static bool ValidarData(string data)

@@ -36,7 +36,7 @@ namespace APIRestTasks.Service
 		public async Task<List<TaskModel>> GetAllTasks()
 		{
 			await Task.Delay(1000).ConfigureAwait(false);
-			return this.tasks.ToList();
+			return this.tasks.OrderBy(i => i.Priority).ToList();
 		}
 
 		public async Task<TaskModel> GetTask(int taskId)

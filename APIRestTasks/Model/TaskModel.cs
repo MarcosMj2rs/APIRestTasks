@@ -19,7 +19,7 @@ namespace APIRestTasks.Model
 
 		public string? completed { get; set; }
 
-		[Range(1, 5)]
+		[Range(1, 5, ErrorMessage = "O valor para {0} deve estar entre {1} e {2}.")]
 		public short Priority { get; set; }
 	}
 }

@@ -37,24 +37,11 @@ namespace APIRestTasks.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult<TaskModel> Post()
+		public ActionResult<TaskModel> Post([FromBody] TaskModel task)
 		{
 			try
 			{
 				var tasks = _taskService.GetAllTasks().Result;
-
-				//Gerando Fake, não veio da tela [FromBody]
-				Random random = new Random();
-				var task = new TaskModel
-				{
-					TaskId = tasks.Count() + 1,
-					completed = "false",
-					Description = $"Task {tasks.Count() + 1}",
-					DueDate = DateTime.Now.ToString("dd-MM-yyyy"),
-					Priority = (short)random.Next(1, 5),
-					Title = $"Title Task {tasks.Count() + 1}"
-				};
-
 				var resultValidate = this.validationRules.Validate(task);
 
 				if (resultValidate.IsValid)
