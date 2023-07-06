@@ -1,0 +1,29 @@
+Você foi contratado como desenvolvedor para criar uma API RESTful complexa para gerenciar uma lista de tarefas (to-do list) em um ambiente de produção. 
+O objetivo é implementar as operações básicas de CRUD (Create, Read, Update, Delete) para manipular as tarefas, 
+juntamente com alguns requisitos adicionais.
+Requisitos:
+A API deve ser desenvolvida em .NET Core usando a linguagem C#.
+
+A API deve fornecer os seguintes endpoints:
+GET		/tasks		 - Retorna a lista completa de tarefas.
+GET		/tasks/{id}	 - Retorna os detalhes de uma tarefa específica.
+POST	/tasks		 - Cria uma nova tarefa.
+PUT		/tasks/{id}	 - Atualiza os dados de uma tarefa específica.
+DELETE	/tasks/{id}	 - Remove uma tarefa específica.
+As tarefas devem ter os seguintes campos: id, title, description, dueDate, completed e priority.
+
+A API deve realizar validações nos campos das tarefas:
+	O campo title não pode estar vazio.
+	O campo description deve ter no máximo 500 caracteres.
+	O campo dueDate deve ser uma data válida no formato “dd-MM-yyyy”.
+	O campo completed deve ser um valor booleano.
+	O campo priority deve ser um número inteiro entre 1 e 5, sendo 1 a maior prioridade.
+
+Implemente os retornos adequados para cada operação:
+Retorne o código HTTP 200 OK junto com a lista de tarefas no formato JSON quando a lista completa de tarefas for solicitada.
+Retorne o código HTTP 200 OK junto com os detalhes da tarefa solicitada no formato JSON quando os detalhes de uma tarefa específica forem solicitados.Retorne o código HTTP 201 Created junto com os detalhes da nova tarefa criada no formato JSON quando uma nova tarefa for criada.Retorne o código HTTP 204 No Content quando uma tarefa for atualizada ou removida com sucesso.Retorne o código HTTP 400 Bad Request quando ocorrerem erros de validação nos campos das tarefas.Retorne o código HTTP 404 Not Found quando uma tarefa não for encontrada.
+Não é necessário utilizar um banco de dados.
+Implemente testes unitários para garantir a funcionalidade correta da API.
+Implemente uma documentação Swagger para a API.
+
+OBS.: Utilizado FluentValidator para validar a entrada de valores
