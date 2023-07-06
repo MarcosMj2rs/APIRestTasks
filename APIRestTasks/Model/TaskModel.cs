@@ -7,7 +7,7 @@ namespace APIRestTasks.Model
 	{
 		[Key]
 		[Required]
-        public int TaskId { get; set; }
+		public int TaskId { get; set; }
 
 		[NotNull]
 		public string? Title { get; set; }
@@ -17,9 +17,9 @@ namespace APIRestTasks.Model
 
 		public string? DueDate { get; set; }
 
-        public string? completed { get; set; }
+		public string? completed { get; set; }
 
 		[Range(1, 5)]
-        public short Priority { get; set; }
-    }
+		public short Priority { get; set; }
+	}
 }
