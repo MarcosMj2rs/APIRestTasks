@@ -10,11 +10,11 @@ namespace APIRestTasks.Service
 		{
 			this.tasks = new List<TaskModel>
 			{
-				new TaskModel { TaskId = 1, completed = "true", Description = "Task 1", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 1, Title = "Title Task 1" },
-				new TaskModel { TaskId = 2, completed = "true", Description = "Task 2", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 2, Title = "Title Task 2" },
-				new TaskModel { TaskId = 3, completed = "true", Description = "Task 3", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 3, Title = "Title Task 3" },
-				new TaskModel { TaskId = 4, completed = "true", Description = "Task 4", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 4, Title = "Title Task 4" },
-				new TaskModel { TaskId = 5, completed = "true", Description = "Task 5", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 5, Title = "Title Task 5" }
+				new TaskModel { TaskId = 1, completed = true, Description = "Task 1", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 1, Title = "Title Task 1" },
+				new TaskModel { TaskId = 2, completed = true, Description = "Task 2", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 2, Title = "Title Task 2" },
+				new TaskModel { TaskId = 3, completed = false, Description = "Task 3", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 3, Title = "Title Task 3" },
+				new TaskModel { TaskId = 4, completed = true, Description = "Task 4", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 4, Title = "Title Task 4" },
+				new TaskModel { TaskId = 5, completed = false, Description = "Task 5", DueDate = DateTime.Now.ToString("dd-MM-yyyy"), Priority = 5, Title = "Title Task 5" }
 			};
 		}
 

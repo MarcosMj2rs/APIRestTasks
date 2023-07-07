@@ -18,7 +18,7 @@ namespace APIRestTasks.Model
 				.Must(ValidarData).WithMessage("O campo dueDate deve ser uma data válida no formato dd-MM-yyyy");
 
 			RuleFor(x => x.completed)
-				.Must(IsBoolean).WithMessage("O campo completed deve ser um valor booleano ['true' | 'false']");
+				.Must(IsBoolean).WithMessage("O campo completed deve ser um valor booleano [true|false]");
 		}
 
 		private static bool ValidarData(string data)
@@ -33,10 +33,15 @@ namespace APIRestTasks.Model
 			return valor == DateTime.MinValue ? false : true;
 		}
 
-		private static bool IsBoolean(string data)
+		private static bool IsBoolean(bool data)
 		{
 			var booleanValid = false;
-			return bool.TryParse(data, out booleanValid);
+
+			try
+			{
+				return bool.TryParse(Convert.ToString(data), out booleanValid);
+			}
+			catch { return booleanValid; }
 		}
 
 		private static bool RangePriority(short data)

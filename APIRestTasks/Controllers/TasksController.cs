@@ -1,26 +1,50 @@
 ﻿using APIRestTasks.Model;
 using APIRestTasks.Service;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 
 namespace APIRestTasks.Controllers
 {
+	/// <summary>
+	/// TaskController
+	/// </summary>
 	[Route("api/[controller]")]
 	[ApiController]
 	public class TaskController : ControllerBase
 	{
 		private readonly ITaskService _taskService;
 		private readonly TaskValidator validationRules;
+		JsonSerializerOptions options { get; set; }
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="taskService"></param>
 		public TaskController(ITaskService taskService)
 		{
 			this._taskService = taskService;
 			this.validationRules = new TaskValidator();
+
+			options = new JsonSerializerOptions
+			{
+				Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+				WriteIndented = true
+			};
 		}
 
 		[HttpGet]
 		public ActionResult<List<TaskModel>> Get()
 		{
-			return Ok(this._taskService.GetAllTasks().Result);
+			try
+			{
+				return new JsonResult(this._taskService.GetAllTasks().Result, options);
+			}
+			catch
+			{
+				Response.StatusCode = StatusCodes.Status400BadRequest;
+				return new JsonResult(Response.StatusCode, options);
+			}
 		}
 
 		[HttpGet("{id}")]
@@ -28,11 +52,12 @@ namespace APIRestTasks.Controllers
 		{
 			try
 			{
-				return Ok(_taskService.GetTask(id).Result);
+				return new JsonResult(_taskService.GetTask(id).Result, options);
 			}
 			catch
 			{
-				return BadRequest();
+				Response.StatusCode = StatusCodes.Status400BadRequest;
+				return new JsonResult(Response.StatusCode, options);
 			}
 		}
 
@@ -47,12 +72,13 @@ namespace APIRestTasks.Controllers
 				if (resultValidate.IsValid)
 				{
 					this._taskService.AddTask(task);
-					return Ok();
+					return new JsonResult(StatusCodes.Status200OK, options);
 				}
 				else
 				{
+					Response.StatusCode = StatusCodes.Status400BadRequest;
 					var errorMessages = resultValidate.Errors.Select(x => x.ErrorMessage).ToList();
-					return BadRequest(errorMessages);
+					return new JsonResult(errorMessages, options);
 				}
 			}
 			catch
@@ -67,11 +93,12 @@ namespace APIRestTasks.Controllers
 			try
 			{
 				_taskService.UpdateTask(id);
-				return Ok();
+				return new JsonResult(StatusCodes.Status200OK, options);
 			}
 			catch
 			{
-				return BadRequest();
+				Response.StatusCode = StatusCodes.Status400BadRequest;
+				return new JsonResult(Response.StatusCode, options);
 			}
 		}
 
@@ -81,11 +108,12 @@ namespace APIRestTasks.Controllers
 			try
 			{
 				_taskService.DeleteTask(id);
-				return Ok();
+				return new JsonResult(StatusCodes.Status200OK, options);
 			}
 			catch
 			{
-				return BadRequest();
+				Response.StatusCode = StatusCodes.Status400BadRequest;
+				return new JsonResult(Response.StatusCode, options);
 			}
 		}
 	}
