@@ -2,10 +2,16 @@
 
 namespace APIRestTasks.Service
 {
+	/// <summary>
+	/// TaskService
+	/// </summary>
 	public class TaskService : ITaskService
 	{
 		private readonly List<TaskModel> tasks;
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
 		public TaskService()
 		{
 			this.tasks = new List<TaskModel>

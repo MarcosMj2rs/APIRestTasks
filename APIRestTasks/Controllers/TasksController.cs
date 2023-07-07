@@ -13,10 +13,13 @@ namespace APIRestTasks.Controllers
 	[ApiController]
 	public class TaskController : ControllerBase
 	{
+		#region[[PROPERTIES]]
 		private readonly ITaskService _taskService;
 		private readonly TaskValidator validationRules;
 		JsonSerializerOptions options { get; set; }
+		#endregion
 
+		#region[[ACTIONS]]
 		/// <summary>
 		/// Constructor
 		/// </summary>
@@ -116,5 +119,6 @@ namespace APIRestTasks.Controllers
 				return new JsonResult(Response.StatusCode, options);
 			}
 		}
+		#endregion
 	}
 }
